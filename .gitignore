@@ -4,4 +4,3 @@ restenv
 *.pyc
 .env
 \migrations
-.gitignore
