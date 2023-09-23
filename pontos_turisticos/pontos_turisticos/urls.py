@@ -28,7 +28,7 @@ router = routers.DefaultRouter()
 router.register(
     r"pontoturistico",
     viewset=PontoTuristicoViewSet,
-    basename="PontoTuristico",
+    basename="pontoturistico",
 )
 router.register(r"atracoes", viewset=AtracaoViewSet)
 router.register(r"avaliacoes", viewset=AvaliacaoViewSet)
