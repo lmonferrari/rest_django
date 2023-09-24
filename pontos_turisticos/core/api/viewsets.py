@@ -10,7 +10,19 @@ class PontoTuristicoViewSet(ModelViewSet):
 
     def get_queryset(self):
         # deve retornar um interable (list, queryset, etc)
-        return PontoTuristico.objects.filter(aprovado=True)
+
+        queryset = PontoTuristico.objects.all()
+
+        filter_params = ["id", "nome", "descricao"]
+        for param in filter_params:
+            if self.request.query_params.get(param, None):
+                queryset = queryset.filter(
+                    **{
+                        param: self.request.query_params[param],
+                    }
+                )
+
+        return queryset
 
     # #sobrescrevendo o metodo list
     # def list(self, request, *args, **kwargs):
@@ -37,8 +49,10 @@ class PontoTuristicoViewSet(ModelViewSet):
     #     pass
 
     # função customizada para denunciar um ponto turistico
-    # detail = True para que o endpoint seja acessivel apenas para um ponto turistico
-    # detail = False para que o endpoint seja acessivel para todos os pontos turisticos
+    # detail = True para que o endpoint seja
+    # acessivel apenas para um ponto turistico
+    # detail = False para que o endpoint seja
+    # acessivel para todos os pontos turisticos
     # uri: http://localhost:8000/pontoturistico/1/denunciar/
     @action(methods=["get"], detail=True)
     def denunciar(self, request, pk=None):
