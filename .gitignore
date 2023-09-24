@@ -4,3 +4,4 @@ restenv
 *.pyc
 .env
 \migrations
+*.JPG

@@ -19,6 +19,8 @@ from atracoes.api.viewsets import AtracaoViewSet
 from avaliacoes.api.viewsets import AvaliacaoViewSet
 from comentarios.api.viewsets import ComentarioViewSet
 from core.api.viewsets import PontoTuristicoViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from enderecos.api.viewsets import EnderecoViewSet
@@ -38,4 +40,4 @@ router.register(r"enderecos", viewset=EnderecoViewSet)
 urlpatterns = [
     path("", include(router.urls)),
     path("admin/", admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
