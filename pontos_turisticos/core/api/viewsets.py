@@ -18,7 +18,7 @@ class PontoTuristicoViewSet(ModelViewSet):
             if self.request.query_params.get(param, None):
                 queryset = queryset.filter(
                     **{
-                        param: self.request.query_params[param],
+                        f"{param}__iexact": self.request.query_params[param],
                     }
                 )
 
